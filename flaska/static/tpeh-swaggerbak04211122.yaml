@@ -37,10 +37,10 @@ info:
     - [血液檢驗測試資料(預留)]
     
     服務連結:
-    - [TPEH FHIR Portal](http://10.200.251.72:8000/)
-    - [TPEH FHIR server](http://10.200.251.72:8080/)
-    - [TPEH FHIR API](http://10.200.251.72:8888/)
-    - [TPEH API swagger](http://10.200.251.72:8800/)
+    - [TPEH FHIR Portal](http://10.2.1.17:8000/)
+    - [TPEH FHIR server](http://10.2.1.17:8080/)
+    - [TPEH FHIR API](http://10.2.1.17:8888/)
+    - [TPEH API swagger](http://10.2.1.17:8800/)
     
     FHIR標準參照:
     - [衛生福利部電子病歷FHIR推動專區](https://emr.mohw.gov.tw/myemr/fhir.html)
@@ -61,7 +61,7 @@ externalDocs:
   description: Find out more about 緯謙科技
   url: https://www.wiadvance.com/
 servers:
-  - url: http://10.200.251.72:8888
+  - url: http://10.2.1.17:8888
 tags:
   - name: 交換單張
     description: 公告交換單張標準
@@ -282,113 +282,6 @@ paths:
         - name: VisitNote_Id
           in: path
           description: ID of VisitNote to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OperationOutcome
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Delete_Reaponse_Json'
-      security:
-        - wiadvance_auth:
-            - delete
-            
-  /BloodExamination/{BloodExamination_Id}:
-    post:
-      tags:
-        - 血液檢驗
-      summary: 新增血液檢驗資料(預留)
-      description: 將血液檢驗轉為FHIR並儲存至FHIR server
-      operationId: add_BloodExamination
-      parameters: 
-        - name: BloodExamination_Id
-          in: path
-          description: ID of BloodExamination to add
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: Composition_BloodExamination
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DischargeSummary_ApiJSON'
-        required: true
-      responses:
-        '201':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
-      security:
-         - api_key: []
-    get:
-      tags:
-        - 血液檢驗
-      summary: 取得血液檢驗資料(預留)
-      description: 取得血液檢驗資料(預留)
-      operationId: get_BloodExamination
-      parameters: 
-        - name: BloodExamination_Id
-          in: path
-          description: ID of BloodExamination to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
-    put:
-      tags:
-        - 血液檢驗
-      summary: 更新血液檢驗資料(預留)
-      description: 更新血液檢驗資料(預留)
-      operationId: put_BloodExamination
-      parameters: 
-        - name: BloodExamination_Id
-          in: path
-          description: ID of BloodExamination to update
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: Composition_BloodExamination
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
-      security:
-        - wiadvance_auth:
-            - put
-    delete:
-      tags:
-        - 血液檢驗
-      summary: 刪除血液檢驗資料(預留)
-      description: 刪除血液檢驗資料(預留)
-      operationId: delete_BloodExamination
-      parameters: 
-        - name: BloodExamination_Id
-          in: path
-          description: ID of BloodExamination to delete
           required: true
           schema:
             type: integer
@@ -820,6 +713,7 @@ components:
         Receiving_hospital_name: 醫院
         PHYSICIAN_NAME: XXXX
         RESULT_MSG: XXXX
+
     Composition_VisitNote_ApiResponse_JSON:
       type: object
       properties:
