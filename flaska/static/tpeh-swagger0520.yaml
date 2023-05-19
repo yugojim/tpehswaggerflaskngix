@@ -119,8 +119,8 @@ paths:
           description: ID of DischargeSummary to return
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
@@ -140,8 +140,8 @@ paths:
           description: ID of DischargeSummary to update
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       requestBody:
         description: Composition_DischargeSummary
         content:
@@ -170,8 +170,8 @@ paths:
           description: ID of DischargeSummary to delete
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: OperationOutcome
@@ -196,7 +196,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VisitNote_ApiJSON'
+              $ref: '#/components/schemas/DischargeSummary_ApiJSON'
         required: true
       responses:
         '201':
@@ -220,8 +220,8 @@ paths:
           description: ID of VisitNote to return
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
@@ -241,8 +241,8 @@ paths:
           description: ID of VisitNote to update
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       requestBody:
         description: Composition_VisitNote
         content:
@@ -271,8 +271,8 @@ paths:
           description: ID of VisitNote to delete
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: OperationOutcome
@@ -701,80 +701,6 @@ components:
         Receiving_hospital_name: 醫院
         PHYSICIAN_NAME: XXXX
         RESULT_MSG: XXXX
-    VisitNote_ApiJSON:
-      type: object
-      properties:
-        HISTORY_OF_ALLERGIES:
-          type: string
-        MAJOR_ILLNESS:
-          type: string
-        PROCEDURE:
-          type: string
-        PRESCRIPTION:
-          type: string
-        SOA:
-          type: string
-
-      example:
-        HISTORY_OF_ALLERGIES: []
-        MAJOR_ILLNESS: []
-        PROCEDURE: 
-          CHART_NO: "41537252"
-          TEXT: null
-          ITEM: "G0020510"
-          PROCEDURE_CODE: "08011C"
-          PROCEDURE_NAME: "全套血液檢查Ｉ（八項）"
-          FREQUENCY": null
-          AMOUNT: "1"
-          UNITS: "次"
-          PART: null
-          NOTE: null
-        PRESCRIPTION: 
-          CHART_NO": "41537252"
-          TEXT": null
-          ITEM": "G001856"
-          TYPES_OF_PRESCRIPTION": "一般處方"
-          DRUG_CODE": "AC43493345"
-          BRAND_NAME": "Flurbi PAP 40mg/Patch(Flurbiprofen)"
-          GENERIC_NAME": "Flurbiprofen"
-          DOSAGE_FORM": "外用"
-          DOSE": "1"
-          DOSE_UNIT": "片"
-          FREQUENCY": "QOD"
-          ROUTE_OF_ADMINISTRATION": "EXT"
-          MEDICATION_DAYS": "7"
-          TOTAL_AMOUNT": "4"
-          ACTUAL_UNITS": "片"
-          POWDERED": "N"
-          NOTE": null
-        SOA": 
-          HOSPITAL_ID": "0101090517"
-          HOSPITAL_NAME": "市立聯合醫院仁愛院區"
-          PERSONAL_ID": "F201188289"
-          CHART_NO": "41537252"
-          NAME": "吳044830"
-          GENDER": "F"
-          BIRTH_DATE": "19331128"
-          BLOOD_TYPE": "O"
-          RH_TYPE": "+"
-          AGE": 89
-          OCCUPATION": "00"
-          IDENTITY_TYPE": "健保"
-          OPD_DATE": "2017-01-12T00:00:00+08:00"
-          DEPARTMENT": "心臟血管內科"
-          ICD_CODE": "I25.10"
-          ICD_NAME": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
-          NOTE": null
-          SUBJECTIVE": "Old CVA, DM, HCVD, CHF,\nCould no tolerate PES\n104／07／21 just discharged due to UTI\n1050825 occasional HTN"
-          OBJECTIVE": "BP 120~140／70~90BP 120~140／70~90 stable for refill"
-          ASSESSMENT": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
-          LANGUAGE": "ZH-TW"
-          TITLE": "門診病歷"
-          DATE": "2017-01-12T07:32:18+08:00"
-          PHYSICIAN_NAME": "李00"
-          PHYSICIAN_ID": "DAD13"
-          TIME": "2017-01-12 15:32:18"
-        
     Composition_VisitNote_ApiResponse_JSON:
       type: object
       properties:

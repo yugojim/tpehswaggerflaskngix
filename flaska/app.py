@@ -20,10 +20,6 @@ def VisitNote():
 @app.route('/DischargeSummary')
 def DischargeSummary():
     return send_from_directory(app.root_path, 'TpehDischargeSummary.json')
-    
-@app.route('/BloodExamination')
-def BloodExamination():
-    return send_from_directory(app.root_path, 'TpehBloodExamination.json')
 
 if __name__ == '__main__':
    app.run(debug=True, port=8003)

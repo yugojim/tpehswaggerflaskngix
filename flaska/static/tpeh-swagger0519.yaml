@@ -13,7 +13,9 @@ info:
     對象 :
 
             1.出院病摘
-            2.門診病歷
+            2.門診病歷(第二階段)
+            3.血液檢驗(第二階段)
+            4.檢查報告(第二階段)
 
     方法 : 
             
@@ -31,8 +33,9 @@ info:
 
     範例資料:
     - [出院病摘單測試資料](/DischargeSummary)
-    - [門診病例測試資料](/VisitNote)
-
+    - [門診病例測試資料(預留)]
+    - [血液檢驗測試資料(預留)]
+    
     服務連結:
     - [TPEH FHIR Portal](http://10.200.251.72:8000/)
     - [TPEH FHIR server](http://10.200.251.72:8080/)
@@ -80,15 +83,21 @@ paths:
           description: "Server Status : run (正常)"
         '500':
           description: "internal server error (內部伺服器錯誤)"
-          
-  /DischargeSummary/:
+  /DischargeSummary/{DischargeSummary_Id}:
     post:
       tags:
         - 出院病摘單
       summary: 新增出院病摘單資料
       description: 將出院病摘單資料轉為FHIR並儲存至FHIR server
       operationId: add_DischargeSummary
-      parameters: []
+      parameters: 
+        - name: DischargeSummary_Id
+          in: path
+          description: ID of DischargeSummary to add
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         description: Composition_DischargeSummary
         content:
@@ -105,12 +114,10 @@ paths:
                 $ref: '#/components/schemas/Composition_DischargeSummary_ApiResponse_JSON'
       security:
          - api_key: []
-         
-  /DischargeSummary/{DischargeSummary_Id}:
     get:
       tags:
         - 出院病摘單
-      summary: 取得出院病摘單資料
+      summary: 取得出院病摘單資料(預留)
       description: 取得出院病摘單資料
       operationId: get_DischargeSummary
       parameters: 
@@ -119,8 +126,8 @@ paths:
           description: ID of DischargeSummary to return
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
@@ -131,8 +138,8 @@ paths:
     put:
       tags:
         - 出院病摘單
-      summary: 更新出院病摘單資料
-      description: 更新出院病摘單資料
+      summary: 更新出院病摘單資料(預留)
+      description: 更新出院病摘單資料(預留)
       operationId: put_DischargeSummary
       parameters: 
         - name: DischargeSummary_Id
@@ -140,8 +147,8 @@ paths:
           description: ID of DischargeSummary to update
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       requestBody:
         description: Composition_DischargeSummary
         content:
@@ -161,8 +168,8 @@ paths:
     delete:
       tags:
         - 出院病摘單
-      summary: 刪除出院病摘單資料
-      description: 刪除出院病摘單資料
+      summary: 刪除出院病摘單資料(預留)
+      description: 刪除出院病摘單資料(預留)
       operationId: delete_DischargeSummary
       parameters: 
         - name: DischargeSummary_Id
@@ -170,8 +177,8 @@ paths:
           description: ID of DischargeSummary to delete
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: OperationOutcome
@@ -183,20 +190,27 @@ paths:
         - wiadvance_auth:
             - delete
         
-  /VisitNote/:
+  /VisitNote/{VisitNote_Id}:
     post:
       tags:
         - 門診病例
-      summary: 新增門診病例資料
+      summary: 新增門診病例資料(預留)
       description: 將門診病例轉為FHIR並儲存至FHIR server
       operationId: add_VisitNote
-      parameters: []
+      parameters: 
+        - name: VisitNote_Id
+          in: path
+          description: ID of VisitNote to add
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         description: Composition_VisitNote
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VisitNote_ApiJSON'
+              $ref: '#/components/schemas/DischargeSummary_ApiJSON'
         required: true
       responses:
         '201':
@@ -207,12 +221,11 @@ paths:
                 $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
       security:
          - api_key: []
-  /VisitNote/{VisitNote_Id}:
     get:
       tags:
         - 門診病例
-      summary: 取得門診病例資料
-      description: 取得門診病例資料
+      summary: 取得門診病例資料(預留)
+      description: 取得門診病例資料(預留)
       operationId: get_VisitNote
       parameters: 
         - name: VisitNote_Id
@@ -220,8 +233,8 @@ paths:
           description: ID of VisitNote to return
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
@@ -232,8 +245,8 @@ paths:
     put:
       tags:
         - 門診病例
-      summary: 更新門診病例資料
-      description: 更新門診病例資料
+      summary: 更新門診病例資料(預留)
+      description: 更新門診病例資料(預留)
       operationId: put_VisitNote
       parameters: 
         - name: VisitNote_Id
@@ -241,8 +254,8 @@ paths:
           description: ID of VisitNote to update
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       requestBody:
         description: Composition_VisitNote
         content:
@@ -262,8 +275,8 @@ paths:
     delete:
       tags:
         - 門診病例
-      summary: 刪除門診病例資料
-      description: 刪除門診病例資料
+      summary: 刪除門診病例資料(預留)
+      description: 刪除門診病例資料(預留)
       operationId: delete_VisitNote
       parameters: 
         - name: VisitNote_Id
@@ -271,8 +284,8 @@ paths:
           description: ID of VisitNote to delete
           required: true
           schema:
-            type: string
-            format: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: OperationOutcome
@@ -283,7 +296,113 @@ paths:
       security:
         - wiadvance_auth:
             - delete
-
+            
+  /BloodExamination/{BloodExamination_Id}:
+    post:
+      tags:
+        - 血液檢驗
+      summary: 新增血液檢驗資料(預留)
+      description: 將血液檢驗轉為FHIR並儲存至FHIR server
+      operationId: add_BloodExamination
+      parameters: 
+        - name: BloodExamination_Id
+          in: path
+          description: ID of BloodExamination to add
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Composition_BloodExamination
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DischargeSummary_ApiJSON'
+        required: true
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
+      security:
+         - api_key: []
+    get:
+      tags:
+        - 血液檢驗
+      summary: 取得血液檢驗資料(預留)
+      description: 取得血液檢驗資料(預留)
+      operationId: get_BloodExamination
+      parameters: 
+        - name: BloodExamination_Id
+          in: path
+          description: ID of BloodExamination to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
+    put:
+      tags:
+        - 血液檢驗
+      summary: 更新血液檢驗資料(預留)
+      description: 更新血液檢驗資料(預留)
+      operationId: put_BloodExamination
+      parameters: 
+        - name: BloodExamination_Id
+          in: path
+          description: ID of BloodExamination to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Composition_BloodExamination
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composition_VisitNote_ApiResponse_JSON'
+      security:
+        - wiadvance_auth:
+            - put
+    delete:
+      tags:
+        - 血液檢驗
+      summary: 刪除血液檢驗資料(預留)
+      description: 刪除血液檢驗資料(預留)
+      operationId: delete_BloodExamination
+      parameters: 
+        - name: BloodExamination_Id
+          in: path
+          description: ID of BloodExamination to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OperationOutcome
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Delete_Reaponse_Json'
+      security:
+        - wiadvance_auth:
+            - delete
 components:
   schemas:
     ContentPackage:
@@ -701,80 +820,6 @@ components:
         Receiving_hospital_name: 醫院
         PHYSICIAN_NAME: XXXX
         RESULT_MSG: XXXX
-    VisitNote_ApiJSON:
-      type: object
-      properties:
-        HISTORY_OF_ALLERGIES:
-          type: string
-        MAJOR_ILLNESS:
-          type: string
-        PROCEDURE:
-          type: string
-        PRESCRIPTION:
-          type: string
-        SOA:
-          type: string
-
-      example:
-        HISTORY_OF_ALLERGIES: []
-        MAJOR_ILLNESS: []
-        PROCEDURE: 
-          CHART_NO: "41537252"
-          TEXT: null
-          ITEM: "G0020510"
-          PROCEDURE_CODE: "08011C"
-          PROCEDURE_NAME: "全套血液檢查Ｉ（八項）"
-          FREQUENCY": null
-          AMOUNT: "1"
-          UNITS: "次"
-          PART: null
-          NOTE: null
-        PRESCRIPTION: 
-          CHART_NO": "41537252"
-          TEXT": null
-          ITEM": "G001856"
-          TYPES_OF_PRESCRIPTION": "一般處方"
-          DRUG_CODE": "AC43493345"
-          BRAND_NAME": "Flurbi PAP 40mg/Patch(Flurbiprofen)"
-          GENERIC_NAME": "Flurbiprofen"
-          DOSAGE_FORM": "外用"
-          DOSE": "1"
-          DOSE_UNIT": "片"
-          FREQUENCY": "QOD"
-          ROUTE_OF_ADMINISTRATION": "EXT"
-          MEDICATION_DAYS": "7"
-          TOTAL_AMOUNT": "4"
-          ACTUAL_UNITS": "片"
-          POWDERED": "N"
-          NOTE": null
-        SOA": 
-          HOSPITAL_ID": "0101090517"
-          HOSPITAL_NAME": "市立聯合醫院仁愛院區"
-          PERSONAL_ID": "F201188289"
-          CHART_NO": "41537252"
-          NAME": "吳044830"
-          GENDER": "F"
-          BIRTH_DATE": "19331128"
-          BLOOD_TYPE": "O"
-          RH_TYPE": "+"
-          AGE": 89
-          OCCUPATION": "00"
-          IDENTITY_TYPE": "健保"
-          OPD_DATE": "2017-01-12T00:00:00+08:00"
-          DEPARTMENT": "心臟血管內科"
-          ICD_CODE": "I25.10"
-          ICD_NAME": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
-          NOTE": null
-          SUBJECTIVE": "Old CVA, DM, HCVD, CHF,\nCould no tolerate PES\n104／07／21 just discharged due to UTI\n1050825 occasional HTN"
-          OBJECTIVE": "BP 120~140／70~90BP 120~140／70~90 stable for refill"
-          ASSESSMENT": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
-          LANGUAGE": "ZH-TW"
-          TITLE": "門診病歷"
-          DATE": "2017-01-12T07:32:18+08:00"
-          PHYSICIAN_NAME": "李00"
-          PHYSICIAN_ID": "DAD13"
-          TIME": "2017-01-12 15:32:18"
-        
     Composition_VisitNote_ApiResponse_JSON:
       type: object
       properties:
